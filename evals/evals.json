@@ -1,0 +1,130 @@
+{
+  "skill_name": "text-to-whiteboard",
+  "evals": [
+    {
+      "id": 1,
+      "name": "simple-mode-short-content",
+      "prompt": "请把以下短笔记转成简洁的白板：\n\n## 今日工作计划\n- 上午：完成周报\n- 下午：团队会议\n- 晚上：读书30分钟\n\n## 本周目标\n1. 完成项目A的初稿\n2. 准备周五的分享会\n3. 学习新工具\n\n用简洁模式，直接生成，不要问太多问题。",
+      "expected_output": "生成一个 .excalidraw 文件，使用简洁模式（黑白为主），结构清晰",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_file_exists",
+          "description": "输出文件存在且为 .excalidraw 格式"
+        },
+        {
+          "name": "valid_excalidraw_json",
+          "description": "输出的 JSON 是有效的 Excalidraw 格式"
+        },
+        {
+          "name": "contains_all_content",
+          "description": "包含输入内容的所有关键信息"
+        },
+        {
+          "name": "minimal_questions",
+          "description": "没有询问过多问题，直接生成"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "full-mode-flowchart",
+      "prompt": "请把以下流程文章转成白板，需要流程图和颜色区分：\n\n# 用户注册流程\n\n## 第一步：填写信息\n用户需要填写邮箱、密码、用户名等基本信息。系统会进行实时验证。\n\n## 第二步：邮箱验证\n发送验证邮件到用户邮箱，用户点击链接完成验证。有效期24小时。\n\n## 第三步：完善资料\n用户可以上传头像、填写个人简介、设置偏好。\n\n## 第四步：开始使用\n完成注册后，系统会显示新手引导，帮助用户快速上手。\n\n请用完整可视化模式，生成流程图，用箭头连接各步骤。",
+      "expected_output": "生成带流程图、箭头、多色卡片的 .excalidraw 文件",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_file_exists",
+          "description": "输出文件存在且为 .excalidraw 格式"
+        },
+        {
+          "name": "has_flowchart_structure",
+          "description": "包含流程图结构（卡片+箭头连接）"
+        },
+        {
+          "name": "has_multiple_colors",
+          "description": "使用了多种颜色区分不同模块"
+        },
+        {
+          "name": "four_steps_present",
+          "description": "四个步骤都已可视化呈现"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "auto-detect-comparison",
+      "prompt": "帮我把这个产品对比转成白板：\n\n# 方案对比\n\n## 方案A：自建系统\n- 优点：完全可控、数据安全、可定制\n- 缺点：成本高、周期长、维护复杂\n- 适合：大型企业、有技术团队\n\n## 方案B：使用SaaS\n- 优点：快速上线、成本低、持续更新\n- 缺点：数据在外、定制受限\n- 适合：中小企业、快速验证\n\n## 推荐\n根据团队规模和预算选择，10人以下推荐方案B。",
+      "expected_output": "生成对比图，左右两栏或上下对比",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_file_exists",
+          "description": "输出文件存在且为 .excalidraw 格式"
+        },
+        {
+          "name": "has_comparison_layout",
+          "description": "使用对比布局展示两个方案"
+        },
+        {
+          "name": "both_plans_visible",
+          "description": "方案A和方案B的内容都清晰可见"
+        },
+        {
+          "name": "recommendation_included",
+          "description": "包含推荐结论"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "knowledge-map-classification",
+      "prompt": "请把这个分类体系转成知识图谱白板：\n\n# AI 学习路径\n\n## 基础知识\n- 数学基础：线性代数、概率论、微积分\n- 编程基础：Python、NumPy、Pandas\n\n## 机器学习\n- 监督学习：分类、回归\n- 无监督学习：聚类、降维\n- 实践项目：房价预测、手写数字识别\n\n## 深度学习\n- 神经网络基础\n- CNN、RNN、Transformer\n- 框架：PyTorch、TensorFlow\n\n## 应用方向\n- 计算机视觉\n- 自然语言处理\n- 推荐系统",
+      "expected_output": "生成知识图谱，展示层级关系和分类",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_file_exists",
+          "description": "输出文件存在且为 .excalidraw 格式"
+        },
+        {
+          "name": "has_hierarchy_structure",
+          "description": "展示了层级结构（主标题→分类→子项）"
+        },
+        {
+          "name": "all_categories_present",
+          "description": "四个主要分类都已呈现"
+        },
+        {
+          "name": "uses_color_coding",
+          "description": "使用颜色区分不同分类"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "with-branding",
+      "prompt": "把这个会议记录转成白板，并在底部加上品牌水印「by 小明」：\n\n## 项目复盘会议\n\n### 议题一：进度回顾\n- 前端完成80%\n- 后端完成90%\n- 测试开始\n\n### 议题二：风险点\n- 第三方API延迟\n- 需要增加测试资源\n\n### 议题三：下周计划\n- 完成联调\n- 提交测试\n- 准备演示",
+      "expected_output": "生成带品牌水印的白板文件",
+      "files": [],
+      "assertions": [
+        {
+          "name": "output_file_exists",
+          "description": "输出文件存在且为 .excalidraw 格式"
+        },
+        {
+          "name": "has_branding",
+          "description": "包含品牌水印「by 小明」"
+        },
+        {
+          "name": "branding_position_correct",
+          "description": "品牌水印在底部位置"
+        },
+        {
+          "name": "all_content_present",
+          "description": "三个议题内容都完整呈现"
+        }
+      ]
+    }
+  ]
+}

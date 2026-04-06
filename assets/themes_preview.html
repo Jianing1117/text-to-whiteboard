@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Whiteboard - 8种配色主题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #A8C5D4 0%, #7BA3B5 100%);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #E8F1F5;
+            font-size: 16px;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .theme-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .theme-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .theme-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .theme-name-cn {
+            font-weight: normal;
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        .theme-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .theme-preview {
+            padding: 16px;
+            min-height: 180px;
+        }
+
+        .module-labels {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .module-label {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .color-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .color-box {
+            flex: 1;
+            height: 50px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .color-box span {
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .demo-modules {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .demo-module {
+            padding: 10px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .demo-module-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .theme-desc {
+            padding: 12px 16px;
+            background: #f8f9fa;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .badge-default { background: #667eea; }
+        .badge-business { background: #3b82f6; }
+        .badge-creative { background: #f59e0b; }
+        .badge-minimal { background: #6b7280; }
+        .badge-literary { background: #8b5a3c; }
+        .badge-education { background: #10b981; }
+        .badge-dark { background: #1e1e1e; }
+
+        /* Theme backgrounds */
+        .theme-jianing { background: #F4F7F9; }
+        .theme-professional { background: #F4F7F9; }
+        .theme-finance { background: #f8f9fa; }
+        .theme-minimal { background: #ffffff; border: 1px solid #e0e0e0; }
+        .theme-pastel { background: #FDFBF7; }
+        .theme-paper { background: #faf9f7; }
+        .theme-vintage { background: #f5f3ee; }
+        .theme-editorial { background: #ffffff; }
+        .theme-dark { background: #1e1e1e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Text to Whiteboard</h1>
+            <p class="subtitle">8种配色主题对比 · 精选浅色背景配色 · 适合白板可视化</p>
+        </div>
+
+        <div class="themes-grid">
+            <!-- 1. Jianing Fav -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #DDE7ED;">
+                    <div class="theme-name" style="color: #3D5A6A;">
+                        Jianing Fav <span class="theme-name-cn">· 加宁最爱</span>
+                    </div>
+                    <div class="theme-badge badge-default">默认推荐</div>
+                </div>
+                <div class="theme-preview theme-jianing">
+                    <div class="module-labels">
+                        <div class="module-label">🔵 蓝族</div>
+                        <div class="module-label">🟢 绿族</div>
+                        <div class="module-label">🟡 黄族</div>
+                        <div class="module-label">🔴 玫瑰族</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #DDE7ED; color: #3D6A82;">
+                            <span>浅蓝<br/>#DDE7ED</span>
+                        </div>
+                        <div class="color-box" style="background: #E2EDDF; color: #3A6B42;">
+                            <span>浅绿<br/>#E2EDDF</span>
+                        </div>
+                        <div class="color-box" style="background: #F5F0DC; color: #7A6020;">
+                            <span>浅黄<br/>#F5F0DC</span>
+                        </div>
+                        <div class="color-box" style="background: #F2E8E6; color: #8F3F3A;">
+                            <span>玫瑰<br/>#F2E8E6</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #DDE7ED; color: #3D6A82;">
+                            <div class="demo-module-title">蓝模块</div>
+                            <div>流程/步骤</div>
+                        </div>
+                        <div class="demo-module" style="background: #E2EDDF; color: #3A6B42;">
+                            <div class="demo-module-title">绿模块</div>
+                            <div>增长/正向</div>
+                        </div>
+                        <div class="demo-module" style="background: #F5F0DC; color: #7A6020;">
+                            <div class="demo-module-title">黄模块</div>
+                            <div>注意/要点</div>
+                        </div>
+                        <div class="demo-module" style="background: #F2E8E6; color: #8F3F3A;">
+                            <div class="demo-module-title">玫瑰模块</div>
+                            <div>情感/创意</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>加宁最爱</strong> · 4模块多色系统（蓝/绿/黄/玫瑰红），遵循impeccable设计原则，浅色底+同色自洽
+                </div>
+            </div>
+
+            <!-- 2. Professional Blue -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #DDE7ED;">
+                    <div class="theme-name" style="color: #3D5A6A;">
+                        Professional Blue <span class="theme-name-cn">· 专业蓝</span>
+                    </div>
+                    <div class="theme-badge badge-business">商务</div>
+                </div>
+                <div class="theme-preview theme-professional">
+                    <div class="module-labels">
+                        <div class="module-label">🔵 统一蓝族</div>
+                        <div class="module-label">🔵 统一蓝族</div>
+                        <div class="module-label">🔵 统一蓝族</div>
+                        <div class="module-label">🔵 统一蓝族</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #DDE7ED; color: #3D6A82;">
+                            <span>浅蓝<br/>#DDE7ED</span>
+                        </div>
+                        <div class="color-box" style="background: #C3D4DE; color: #3D5A6A;">
+                            <span>中蓝<br/>#C3D4DE</span>
+                        </div>
+                        <div class="color-box" style="background: #9FB5C3; color: #3D5A6A;">
+                            <span>中深<br/>#9FB5C3</span>
+                        </div>
+                        <div class="color-box" style="background: #6D8FA0; color: white;">
+                            <span>深蓝<br/>#6D8FA0</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #DDE7ED; color: #3D6A82;">
+                            <div class="demo-module-title">模块A</div>
+                            <div>步骤一</div>
+                        </div>
+                        <div class="demo-module" style="background: #C3D4DE; color: #3D5A6A;">
+                            <div class="demo-module-title">模块B</div>
+                            <div>步骤二</div>
+                        </div>
+                        <div class="demo-module" style="background: #DDE7ED; color: #3D6A82;">
+                            <div class="demo-module-title">模块C</div>
+                            <div>步骤三</div>
+                        </div>
+                        <div class="demo-module" style="background: #C3D4DE; color: #3D5A6A;">
+                            <div class="demo-module-title">模块D</div>
+                            <div>步骤四</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>专业蓝</strong> · Jianing Fav的简化版，单一蓝色系，简洁统一，适合商务场景
+                </div>
+            </div>
+
+            <!-- 3. Finance Graph -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #f8f9fa;">
+                    <div class="theme-name" style="color: #1a1a2e;">
+                        Finance Graph <span class="theme-name-cn">· 金融图表</span>
+                    </div>
+                    <div class="theme-badge badge-business">数据</div>
+                </div>
+                <div class="theme-preview theme-finance">
+                    <div class="module-labels">
+                        <div class="module-label">🟢 正向</div>
+                        <div class="module-label">🔴 负向</div>
+                        <div class="module-label">🔵 中性</div>
+                        <div class="module-label">⚪ 灰度</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #10b981; color: white;">
+                            <span>绿<br/>#10b981</span>
+                        </div>
+                        <div class="color-box" style="background: #ef4444; color: white;">
+                            <span>红<br/>#ef4444</span>
+                        </div>
+                        <div class="color-box" style="background: #3b82f6; color: white;">
+                            <span>蓝<br/>#3b82f6</span>
+                        </div>
+                        <div class="color-box" style="background: #6b7280; color: white;">
+                            <span>灰<br/>#6b7280</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #d1fae5; color: #065f46;">
+                            <div class="demo-module-title">↑ 增长</div>
+                            <div>+25%</div>
+                        </div>
+                        <div class="demo-module" style="background: #fee2e2; color: #991b1b;">
+                            <div class="demo-module-title">↓ 下降</div>
+                            <div>-15%</div>
+                        </div>
+                        <div class="demo-module" style="background: #dbeafe; color: #1e40af;">
+                            <div class="demo-module-title">→ 持平</div>
+                            <div>+2%</div>
+                        </div>
+                        <div class="demo-module" style="background: #f3f4f6; color: #374151;">
+                            <div class="demo-module-title">N/A</div>
+                            <div>待定</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>金融图表</strong> · 浅灰背景，绿=正向，红=负向，适合数据分析和财务报告
+                </div>
+            </div>
+
+            <!-- 4. Minimal Pitch -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #f8f9fa;">
+                    <div class="theme-name" style="color: #0a0a0a;">
+                        Minimal Pitch <span class="theme-name-cn">· 极简路演</span>
+                    </div>
+                    <div class="theme-badge badge-minimal">极简</div>
+                </div>
+                <div class="theme-preview theme-minimal">
+                    <div class="module-labels">
+                        <div class="module-label">⚪ 留白</div>
+                        <div class="module-label">⚫ 黑色</div>
+                        <div class="module-label">⚪ 浅灰</div>
+                        <div class="module-label">⚫ 深黑</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #ffffff; color: #0a0a0a; border: 1px solid #e0e0e0;">
+                            <span>白<br/>#ffffff</span>
+                        </div>
+                        <div class="color-box" style="background: #0a0a0a; color: white;">
+                            <span>黑<br/>#0a0a0a</span>
+                        </div>
+                        <div class="color-box" style="background: #f8f9fa; color: #0a0a0a;">
+                            <span>浅灰<br/>#f8f9fa</span>
+                        </div>
+                        <div class="color-box" style="background: #6b7280; color: white;">
+                            <span>灰<br/>#6b7280</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #ffffff; color: #0a0a0a; border: 2px solid #0a0a0a;">
+                            <div class="demo-module-title">核心</div>
+                            <div>产品</div>
+                        </div>
+                        <div class="demo-module" style="background: #0a0a0a; color: white;">
+                            <div class="demo-module-title">市场</div>
+                            <div>规模</div>
+                        </div>
+                        <div class="demo-module" style="background: #f8f9fa; color: #0a0a0a;">
+                            <div class="demo-module-title">团队</div>
+                            <div>介绍</div>
+                        </div>
+                        <div class="demo-module" style="background: #ffffff; color: #0a0a0a; border: 2px solid #0a0a0a;">
+                            <div class="demo-module-title">愿景</div>
+                            <div>目标</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>极简路演</strong> · 最大化留白，黑白为主，适合startup路演和产品发布
+                </div>
+            </div>
+
+            <!-- 5. Soft Pastel -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #F5E6D3;">
+                    <div class="theme-name" style="color: #6B5344;">
+                        Soft Pastel <span class="theme-name-cn">· 柔和粉彩</span>
+                    </div>
+                    <div class="theme-badge badge-education">教育</div>
+                </div>
+                <div class="theme-preview theme-pastel">
+                    <div class="module-labels">
+                        <div class="module-label">🔵 柔蓝</div>
+                        <div class="module-label">🟢 柔绿</div>
+                        <div class="module-label">🟡 柔黄</div>
+                        <div class="module-label">🔴 柔粉</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #E8EEF4; color: #7A9BB8;">
+                            <span>柔蓝<br/>#E8EEF4</span>
+                        </div>
+                        <div class="color-box" style="background: #E8F4E8; color: #7AB87A;">
+                            <span>柔绿<br/>#E8F4E8</span>
+                        </div>
+                        <div class="color-box" style="background: #F4F4E8; color: #B8B87A;">
+                            <span>柔黄<br/>#F4F4E8</span>
+                        </div>
+                        <div class="color-box" style="background: #F4E8EE; color: #B87A9B;">
+                            <span>柔粉<br/>#F4E8EE</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #E8EEF4; color: #7A9BB8;">
+                            <div class="demo-module-title">概念A</div>
+                            <div>温和</div>
+                        </div>
+                        <div class="demo-module" style="background: #E8F4E8; color: #7AB87A;">
+                            <div class="demo-module-title">概念B</div>
+                            <div>友好</div>
+                        </div>
+                        <div class="demo-module" style="background: #F4F4E8; color: #B8B87A;">
+                            <div class="demo-module-title">概念C</div>
+                            <div>舒适</div>
+                        </div>
+                        <div class="demo-module" style="background: #F4E8EE; color: #B87A9B;">
+                            <div class="demo-module-title">概念D</div>
+                            <div>温柔</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>柔和粉彩</strong> · 温柔舒适的配色，适合教育内容和初学者，易读性好
+                </div>
+            </div>
+
+            <!-- 6. Paper & Ink -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #faf9f7;">
+                    <div class="theme-name" style="color: #1a1a1a;">
+                        Paper & Ink <span class="theme-name-cn">· 纸墨书香</span>
+                    </div>
+                    <div class="theme-badge badge-literary">文艺</div>
+                </div>
+                <div class="theme-preview theme-paper">
+                    <div class="module-labels">
+                        <div class="module-label">📄 米白</div>
+                        <div class="module-label">🔴 深红</div>
+                        <div class="module-label">🟡 金色</div>
+                        <div class="module-label">⚫ 黑色</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #faf9f7; color: #1a1a1a;">
+                            <span>米白<br/>#faf9f7</span>
+                        </div>
+                        <div class="color-box" style="background: #c41e3a; color: white;">
+                            <span>深红<br/>#c41e3a</span>
+                        </div>
+                        <div class="color-box" style="background: #b8860b; color: white;">
+                            <span>金<br/>#b8860b</span>
+                        </div>
+                        <div class="color-box" style="background: #1a1a1a; color: white;">
+                            <span>黑<br/>#1a1a1a</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #ffffff; color: #1a1a1a; border: 1px solid #d0d0d0;">
+                            <div class="demo-module-title">第一章</div>
+                            <div>读书</div>
+                        </div>
+                        <div class="demo-module" style="background: #faf9f7; color: #c41e3a;">
+                            <div class="demo-module-title">第二章</div>
+                            <div>笔记</div>
+                        </div>
+                        <div class="demo-module" style="background: #ffffff; color: #b8860b;">
+                            <div class="demo-module-title">第三章</div>
+                            <div>思考</div>
+                        </div>
+                        <div class="demo-module" style="background: #faf9f7; color: #1a1a1a;">
+                            <div class="demo-module-title">第四章</div>
+                            <div>总结</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>纸墨书香</strong> · 米白背景+深红/金强调，文艺优雅，适合读书笔记和文化分享
+                </div>
+            </div>
+
+            <!-- 7. Vintage Editorial -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #f5f3ee;">
+                    <div class="theme-name" style="color: #1a1a1a;">
+                        Vintage Editorial <span class="theme-name-cn">· 复古编辑</span>
+                    </div>
+                    <div class="theme-badge badge-literary">杂志</div>
+                </div>
+                <div class="theme-preview theme-vintage">
+                    <div class="module-labels">
+                        <div class="module-label">📄 米色</div>
+                        <div class="module-label">🟤 铜色</div>
+                        <div class="module-label">⚪ 白色</div>
+                        <div class="module-label">⚫ 黑色</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #f5f3ee; color: #1a1a1a;">
+                            <span>米色<br/>#f5f3ee</span>
+                        </div>
+                        <div class="color-box" style="background: #b87333; color: white;">
+                            <span>铜<br/>#b87333</span>
+                        </div>
+                        <div class="color-box" style="background: #ffffff; color: #1a1a1a;">
+                            <span>白<br/>#ffffff</span>
+                        </div>
+                        <div class="color-box" style="background: #1a1a1a; color: white;">
+                            <span>黑<br/>#1a1a1a</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #ffffff; color: #1a1a1a;">
+                            <div class="demo-module-title">专题A</div>
+                            <div>内容1</div>
+                        </div>
+                        <div class="demo-module" style="background: #f5f3ee; color: #b87333;">
+                            <div class="demo-module-title">专题B</div>
+                            <div>内容2</div>
+                        </div>
+                        <div class="demo-module" style="background: #ffffff; color: #1a1a1a;">
+                            <div class="demo-module-title">专题C</div>
+                            <div>内容3</div>
+                        </div>
+                        <div class="demo-module" style="background: #f5f3ee; color: #b87333;">
+                            <div class="demo-module-title">专题D</div>
+                            <div>内容4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc">
+                    <strong>复古编辑</strong> · 米色背景+铜色强调，杂志风格，适合长文整理和品牌故事
+                </div>
+            </div>
+
+            <!-- 8. Dark Mode -->
+            <div class="theme-card">
+                <div class="theme-header" style="background: #2d2d2d;">
+                    <div class="theme-name" style="color: #ffffff;">
+                        Dark Mode <span class="theme-name-cn" style="opacity: 0.8;">· 深色模式</span>
+                    </div>
+                    <div class="theme-badge badge-dark">演示</div>
+                </div>
+                <div class="theme-preview theme-dark">
+                    <div class="module-labels">
+                        <div class="module-label" style="color: #5DADE2;">🔵 亮蓝</div>
+                        <div class="module-label" style="color: #58D68D;">🟢 亮绿</div>
+                        <div class="module-label" style="color: #F4D03F;">🟡 亮黄</div>
+                        <div class="module-label" style="color: #EC7063;">🔴 亮红</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-box" style="background: #2d2d2d; color: #5DADE2;">
+                            <span>深灰<br/>#2d2d2d</span>
+                        </div>
+                        <div class="color-box" style="background: #5DADE2; color: #1e1e1e;">
+                            <span>亮蓝<br/>#5DADE2</span>
+                        </div>
+                        <div class="color-box" style="background: #58D68D; color: #1e1e1e;">
+                            <span>亮绿<br/>#58D68D</span>
+                        </div>
+                        <div class="color-box" style="background: #00D9FF; color: #1e1e1e;">
+                            <span>青色<br/>#00D9FF</span>
+                        </div>
+                    </div>
+                    <div class="demo-modules">
+                        <div class="demo-module" style="background: #2d2d2d; color: #5DADE2; border: 1px solid #5DADE2;">
+                            <div class="demo-module-title">模块A</div>
+                            <div>技术</div>
+                        </div>
+                        <div class="demo-module" style="background: #2d2d2d; color: #58D68D; border: 1px solid #58D68D;">
+                            <div class="demo-module-title">模块B</div>
+                            <div>增长</div>
+                        </div>
+                        <div class="demo-module" style="background: #2d2d2d; color: #F4D03F; border: 1px solid #F4D03F;">
+                            <div class="demo-module-title">模块C</div>
+                            <div>注意</div>
+                        </div>
+                        <div class="demo-module" style="background: #2d2d2d; color: #00D9FF; border: 1px solid #00D9FF;">
+                            <div class="demo-module-title">模块D</div>
+                            <div>创新</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-desc" style="background: #2d2d2d; color: #b0b0b0; border-top: 1px solid #3d3d3d;">
+                    <strong style="color: #ffffff;">深色模式</strong> · 深色背景配明亮强调色，现代感强，适合演示和正式场合
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 30px 50px; border-radius: 8px; margin-top: 20px; text-align: center;">
+            <h2 style="margin-bottom: 15px; color: #3D5A6A;">💡 使用提示</h2>
+            <p style="color: #1E2A30; line-height: 1.8;">
+                <strong style="color: #3D5A6A;">指定主题：</strong>"用 Jianing Fav 做这个白板" / "Make this with Minimal Pitch theme"<br><br>
+                <strong style="color: #3D5A6A;">场景关键词：</strong>"做个数据分析白板"（自动选择 Finance Graph）<br><br>
+                <strong style="color: #3D5A6A;">默认：</strong>不指定则使用 Jianing Fav（默认主题）
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; color: #6b7280; font-size: 14px;">
+            Text to Whiteboard v2.0 · Made with ❤️ by Jianing
+        </div>
+    </div>
+</body>
+</html>

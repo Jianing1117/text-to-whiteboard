@@ -1,0 +1,8 @@
+# Workspace and temp files
+workspace/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Eval outputs
+*.excalidraw

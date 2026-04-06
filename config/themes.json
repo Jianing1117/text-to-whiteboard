@@ -1,0 +1,207 @@
+{
+  "themes": {
+    "jianing_fav": {
+      "name": "Jianing Fav",
+      "name_cn": "加宁最爱",
+      "description": "Signature 4-module multi-color system with impeccable design principles",
+      "description_cn": "标志性4模块多色系统，遵循impeccable设计原则",
+      "colors": {
+        "background": "#F4F7F9",
+        "C0": "#F4F7F9",
+        "C1": "#DDE7ED",
+        "C2": "#C3D4DE",
+        "C3": "#9FB5C3",
+        "C4": "#6D8FA0",
+        "C5": "#3D5A6A",
+        "INK": "#1E2A30",
+        "INK_M": "#506570",
+        "INK_L": "#8FA0A8",
+        "GOLD": "#B8882A"
+      },
+      "modules": {
+        "blue": {"light": "#DDE7ED", "dark": "#3D6A82"},
+        "green": {"light": "#E2EDDF", "dark": "#3A6B42"},
+        "yellow": {"light": "#F5F0DC", "dark": "#7A6020"},
+        "rose": {"light": "#F2E8E6", "dark": "#8F3F3A"}
+      },
+      "rules": {
+        "all_light_backgrounds": true,
+        "no_color_mixing": true,
+        "title_color_unified": true,
+        "default_ink": true,
+        "multi_color_priority": "3+"
+      }
+    },
+    "professional_blue": {
+      "name": "Professional Blue",
+      "name_cn": "专业蓝",
+      "description": "Single blue family, clean and unified for business contexts",
+      "description_cn": "单一蓝色系，简洁统一，适合商务场景",
+      "colors": {
+        "background": "#F4F7F9",
+        "C1": "#DDE7ED",
+        "C2": "#C3D4DE",
+        "C3": "#9FB5C3",
+        "C4": "#6D8FA0",
+        "C5": "#3D5A6A",
+        "INK": "#1E2A30"
+      },
+      "modules": {
+        "blue": {"light": "#DDE7ED", "dark": "#3D5A6A"}
+      }
+    },
+    "finance_graph": {
+      "name": "Finance Graph",
+      "name_cn": "金融图表",
+      "description": "Green for positive, red for negative, ideal for data analysis",
+      "description_cn": "绿=正向，红=负向，适合数据分析",
+      "colors": {
+        "background": "#f8f9fa",
+        "card": "#ffffff",
+        "text_primary": "#1a1a2e",
+        "text_secondary": "#6b7280"
+      },
+      "modules": {
+        "positive": {"light": "#d1fae5", "dark": "#065f46", "accent": "#10b981"},
+        "negative": {"light": "#fee2e2", "dark": "#991b1b", "accent": "#ef4444"},
+        "neutral": {"light": "#dbeafe", "dark": "#1e40af", "accent": "#3b82f6"},
+        "inactive": {"light": "#f3f4f6", "dark": "#374151", "accent": "#6b7280"}
+      }
+    },
+    "minimal_pitch": {
+      "name": "Minimal Pitch",
+      "name_cn": "极简路演",
+      "description": "Maximum whitespace, black & white dominant for startup pitches",
+      "description_cn": "最大化留白，黑白为主，适合startup路演",
+      "colors": {
+        "background": "#ffffff",
+        "secondary": "#f8f9fa",
+        "text_primary": "#0a0a0a",
+        "text_secondary": "#6b7280",
+        "accent": "#0a0a0a"
+      },
+      "modules": {
+        "primary": {"bg": "#ffffff", "text": "#0a0a0a", "border": "#0a0a0a"},
+        "secondary": {"bg": "#0a0a0a", "text": "#ffffff"},
+        "tertiary": {"bg": "#f8f9fa", "text": "#0a0a0a"}
+      }
+    },
+    "soft_pastel": {
+      "name": "Soft Pastel",
+      "name_cn": "柔和粉彩",
+      "description": "Gentle pastel colors, friendly for educational content",
+      "description_cn": "温柔的粉彩色，适合教育内容",
+      "colors": {
+        "background": "#FDFBF7",
+        "text_primary": "#6B5344",
+        "text_secondary": "#666666"
+      },
+      "modules": {
+        "blue": {"light": "#E8EEF4", "dark": "#7A9BB8"},
+        "green": {"light": "#E8F4E8", "dark": "#7AB87A"},
+        "yellow": {"light": "#F4F4E8", "dark": "#B8B87A"},
+        "pink": {"light": "#F4E8EE", "dark": "#B87A9B"}
+      }
+    },
+    "paper_ink": {
+      "name": "Paper & Ink",
+      "name_cn": "纸墨书香",
+      "description": "Cream background with crimson and gold accents, literary style",
+      "description_cn": "米白背景+深红/金强调，文艺风格",
+      "colors": {
+        "background": "#faf9f7",
+        "card": "#ffffff",
+        "text_primary": "#1a1a1a",
+        "text_secondary": "#555555",
+        "crimson": "#c41e3a",
+        "gold": "#b8860b"
+      },
+      "modules": {
+        "cream": {"bg": "#ffffff", "text": "#1a1a1a"},
+        "crimson": {"bg": "#faf9f7", "text": "#c41e3a"},
+        "gold": {"bg": "#ffffff", "text": "#b8860b"},
+        "black": {"bg": "#faf9f7", "text": "#1a1a1a"}
+      }
+    },
+    "vintage_editorial": {
+      "name": "Vintage Editorial",
+      "name_cn": "复古编辑",
+      "description": "Beige background with copper accents, magazine style",
+      "description_cn": "米色背景+铜色强调，杂志风格",
+      "colors": {
+        "background": "#f5f3ee",
+        "card": "#ffffff",
+        "text_primary": "#1a1a1a",
+        "copper": "#b87333"
+      },
+      "modules": {
+        "white": {"bg": "#ffffff", "text": "#1a1a1a"},
+        "beige": {"bg": "#f5f3ee", "text": "#b87333"}
+      }
+    },
+    "dark_mode": {
+      "name": "Dark Mode",
+      "name_cn": "深色模式",
+      "description": "Dark background with bright accents, modern for presentations",
+      "description_cn": "深色背景配明亮强调色，适合演示",
+      "colors": {
+        "background": "#1e1e1e",
+        "card": "#2d2d2d",
+        "text_primary": "#ffffff",
+        "text_secondary": "#b0b0b0"
+      },
+      "modules": {
+        "blue": {"bg": "#2d2d2d", "text": "#5DADE2", "accent": "#5DADE2"},
+        "green": {"bg": "#2d2d2d", "text": "#58D68D", "accent": "#58D68D"},
+        "yellow": {"bg": "#2d2d2d", "text": "#F4D03F", "accent": "#F4D03F"},
+        "cyan": {"bg": "#2d2d2d", "text": "#00D9FF", "accent": "#00D9FF"}
+      }
+    },
+    "simple": {
+      "name": "Simple Mode",
+      "name_cn": "简洁模式",
+      "description": "Minimal design for presentations and short content",
+      "description_cn": "极简设计，适合演讲和短内容",
+      "colors": {
+        "background": "#FFFFFF",
+        "text_primary": "#000000",
+        "accent_pink": "#E8CECA",
+        "accent_blue": "#C8D9E6"
+      },
+      "typography": {
+        "H1": 48,
+        "H2": 24,
+        "H3": 16,
+        "body": 14,
+        "caption": 12
+      },
+      "spacing": {
+        "xs": 8,
+        "sm": 16,
+        "md": 24,
+        "lg": 32,
+        "xl": 48,
+        "2xl": 64
+      },
+      "principles": [
+        "Strong hierarchy contrast (1.5x ratio)",
+        "Generous whitespace (48-64px between sections)",
+        "Black text dominant, brand color only for accents",
+        "Asymmetric balance, left-aligned titles",
+        "Dynamic adjustment, change one element affects all"
+      ]
+    }
+  },
+  "default_theme": "jianing_fav",
+  "theme_selection_keywords": {
+    "simple": ["/simple", "simple", "简洁", "极简", "演讲", "speech", "minimal", "clean"],
+    "jianing_fav": ["default", "默认", "最爱", "favorite"],
+    "professional_blue": ["business", "商务", "tech", "技术"],
+    "finance_graph": ["data", "analysis", "数据", "分析", "finance", "金融"],
+    "minimal_pitch": ["pitch", "startup", "路演", "极简", "minimal"],
+    "soft_pastel": ["education", "教育", "tutorial", "教程", "pastel"],
+    "paper_ink": ["literary", "文艺", "reading", "读书", "paper"],
+    "vintage_editorial": ["magazine", "杂志", "editorial", "编辑"],
+    "dark_mode": ["presentation", "演示", "dark", "深色", "keynote"]
+  }
+}

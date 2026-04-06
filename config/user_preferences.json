@@ -1,0 +1,21 @@
+{
+  "$comment": "用户偏好设置 - 快捷模式默认值",
+
+  "fast_mode_defaults": {
+    "$comment_mode": "可视化模式: full(完整可视化) | simple(简洁模式) | auto(自动检测)",
+    "visualization_mode": "auto",
+
+    "$comment_theme": "配色主题，可选值见 themes.json。默认 Jianing Fav",
+    "theme": "Jianing Fav",
+
+    "$comment_branding": "署名，如 'by 小明'。null 表示无署名",
+    "branding": null
+  },
+
+  "$fallback_rule": "如果此文件不存在或字段缺失，快捷模式将使用: mode=auto, theme=Jianing Fav, branding=null",
+
+  "$how_to_save": [
+    "方式1: 生成白板后，选择「保存为快捷模式默认值」",
+    "方式2: 直接编辑此文件"
+  ]
+}

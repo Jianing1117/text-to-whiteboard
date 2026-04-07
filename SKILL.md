@@ -248,6 +248,7 @@ el_line(x, y, w, color, sw)              # 水平分隔线
 | 垂直线无效 | `el_line` 只支持水平 | 用 `el_rect` 代替 |
 | 文字超出卡片 | 宽度估算不准或卡片太小 | 运行 `check_bounds()` 检查 |
 | 画布背景不是白色 | `viewBackgroundColor` 设置错误 | 必须设为 `"#FFFFFF"` |
+| 多行卡片不对齐 | 每行起始 x 或宽度不一致 | 运行 `check_alignment()` 检查，统一使用 `PAGE_X` 作为起始位置 |
 
 ---
 
@@ -284,6 +285,27 @@ def check_bounds(elements):
 ```
 
 **使用方式**：在 `json.dump()` 之前调用 `check_bounds(elements)`
+
+---
+
+## Alignment Checking (Required)
+
+检查多行卡片是否左右对齐：
+
+```python
+def check_alignment(elements, tolerance=8):
+    """检查卡片是否左右对齐"""
+    # 收集大卡片，按 y 坐标分组成行
+    # 检查每行的左边界和右边界是否一致
+    # tolerance=8px 容差
+```
+
+**使用方式**：在 `json.dump()` 之前调用 `check_alignment(elements)`
+
+**对齐原则**：
+- 同一页面多行卡片时，所有行的左边界应该对齐
+- 所有行的右边界应该对齐
+- 容差 8px（小于这个差距不报错）
 
 ---
 
@@ -344,8 +366,12 @@ See `examples/outputs/` for reference images:
 
 ## Version
 
-Current: 2.2.0
+Current: 2.3.0
 Updated: 2026-04-07
+
+**v2.3.0 Changes**:
+- Added `check_alignment()` for multi-row card alignment checking
+- Updated Gotchas table with alignment issue
 
 **v2.2.0 Changes**:
 - Added `estimate_text_width()` for accurate Chinese/English text width

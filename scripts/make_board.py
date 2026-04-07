@@ -116,6 +116,79 @@ def check_bounds(elements):
 
     return warnings
 
+# ── 对齐检查函数 ──────────────────────────────────────
+
+def check_alignment(elements, tolerance=8):
+    """检查卡片是否左右对齐，输出警告"""
+    # 收集所有"大卡片"
+    cards = []
+    for e in elements:
+        if e["type"] == "rectangle" and e["width"] > 100 and e["height"] > 40:
+            cards.append({
+                "x": e["x"],
+                "y": e["y"],
+                "x2": e["x"] + e["width"],
+                "y2": e["y"] + e["height"],
+                "w": e["width"],
+                "h": e["height"]
+            })
+
+    if not cards:
+        return []
+
+    # 按 y 坐标分组（同一行的卡片 y 坐标相近）
+    rows = {}
+    for card in cards:
+        y_key = round(card["y"] / 50) * 50  # 50px 容差
+        if y_key not in rows:
+            rows[y_key] = []
+        rows[y_key].append(card)
+
+    warnings = []
+
+    # 检查每行的左边界和右边界是否对齐
+    row_boundaries = []
+    for y_key, row_cards in sorted(rows.items()):
+        if len(row_cards) >= 2:  # 只检查有 2+ 卡片的行
+            left_edge = min(c["x"] for c in row_cards)
+            right_edge = max(c["x2"] for c in row_cards)
+            row_boundaries.append({
+                "y": y_key,
+                "left": left_edge,
+                "right": right_edge,
+                "count": len(row_cards)
+            })
+
+    # 检查所有行的边界是否一致
+    if len(row_boundaries) >= 2:
+        left_edges = [r["left"] for r in row_boundaries]
+        right_edges = [r["right"] for r in row_boundaries]
+
+        min_left, max_left = min(left_edges), max(left_edges)
+        min_right, max_right = min(right_edges), max(right_edges)
+
+        if max_left - min_left > tolerance:
+            warnings.append(f"⚠️ 左边界不对齐: 最左 {int(min_left)} vs 最右 {int(max_left)} (差距 {int(max_left - min_left)}px)")
+            for r in row_boundaries:
+                if r["left"] != min_left:
+                    warnings.append(f"    行 y={r['y']}: 左边界={int(r['left'])}")
+
+        if max_right - min_right > tolerance:
+            warnings.append(f"⚠️ 右边界不对齐: 最左 {int(min_right)} vs 最右 {int(max_right)} (差距 {int(max_right - min_right)}px)")
+            for r in row_boundaries:
+                if r["right"] != max_right:
+                    warnings.append(f"    行 y={r['y']}: 右边界={int(r['right'])}")
+
+    if warnings:
+        print("\n📐 对齐检查结果：")
+        for w in warnings[:15]:
+            print(f"  {w}")
+        print(f"\n  共 {len(warnings)} 个警告，请调整卡片位置！\n")
+    else:
+        print("✅ 对齐检查通过，卡片左右对齐")
+
+    return warnings
+
 # ── 基础构建函数 ──────────────────────────────────────
 
 def el_rect(x, y, w, h, bg=C1, stroke="transparent", sw=0, r=8):
@@ -532,6 +605,7 @@ if len(sys.argv) >= 3 and sys.argv[1] == "--output":
 
 # 边界检查（输出前必须执行）
 check_bounds(elements)
+check_alignment(elements)
 
 output = {
     "type": "excalidraw",

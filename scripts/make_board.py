@@ -46,6 +46,76 @@ elements = []
 def uid():
     return str(uuid.uuid4())
 
+# ── 文字宽度估算（中英文混排友好）──────────────────────
+
+def estimate_text_width(text, size):
+    """估算文字渲染宽度，中英文混排友好"""
+    width = 0
+    for char in text:
+        if '\u4e00' <= char <= '\u9fff':  # 中文字符
+            width += size * 0.95
+        elif char.isupper():  # 大写英文
+            width += size * 0.65
+        else:  # 小写英文、数字、符号
+            width += size * 0.45
+    return max(int(width), 80)
+
+# ── 边界检查函数 ──────────────────────────────────────
+
+def check_bounds(elements):
+    """检查所有文字元素是否超出其所在卡片的边界，输出警告"""
+    # 收集所有"大卡片"（宽度 > 100px，高度 > 40px，排除装饰性细矩形）
+    rects = []
+    for e in elements:
+        if e["type"] == "rectangle" and e["width"] > 100 and e["height"] > 40:
+            rects.append({
+                "x": e["x"], "y": e["y"],
+                "x2": e["x"] + e["width"],
+                "y2": e["y"] + e["height"],
+                "w": e["width"], "h": e["height"]
+            })
+
+    warnings = []
+    for e in elements:
+        if e["type"] != "text":
+            continue
+        tx, ty = e["x"], e["y"]
+        tw, th = e["width"], e["height"]
+        text_right = tx + tw
+        text_bottom = ty + th
+
+        # 找到最匹配的卡片：文字左上角在卡片内，且卡片面积最小
+        best_rect = None
+        best_area = float('inf')
+        for r in rects:
+            # 文字左上角必须严格在卡片内部（x 和 y 都要在范围内）
+            if r["x"] + 4 <= tx < r["x2"] - 4 and r["y"] + 4 <= ty < r["y2"] - 4:
+                area = r["w"] * r["h"]
+                if area < best_area:
+                    best_area = area
+                    best_rect = r
+
+        if best_rect:
+            rx2, ry2 = best_rect["x2"], best_rect["y2"]
+            # 检查是否超出右边界（留 16px 余量）
+            if text_right > rx2 - 16:
+                warnings.append(f"⚠️ 右边界超出: \"{e['text'][:15]}...\" ({int(text_right)} > {int(rx2)})")
+            # 检查是否超出下边界（留 8px 余量）
+            if text_bottom > ry2 - 8:
+                warnings.append(f"⚠️ 下边界超出: \"{e['text'][:15]}...\" ({int(text_bottom)} > {int(ry2)})")
+
+    if warnings:
+        print("\n🔍 边界检查结果：")
+        for w in warnings[:10]:  # 只显示前10条
+            print(f"  {w}")
+        if len(warnings) > 10:
+            print(f"  ... 还有 {len(warnings) - 10} 条警告")
+        print(f"\n  共 {len(warnings)} 个警告，请检查！\n")
+    else:
+        print("✅ 边界检查通过，无文字超出卡片")
+
+    return warnings
+
 # ── 基础构建函数 ──────────────────────────────────────
 
 def el_rect(x, y, w, h, bg=C1, stroke="transparent", sw=0, r=8):
@@ -79,7 +149,8 @@ def el_line(x, y, w, color=C2, sw=1):
     }
 
 def el_text(x, y, text, size=15, color=INK, w=None, align="left", family=1):
-    tw = w if w else max(len(text) * size * 0.65, 80)
+    # 使用中英文混排友好的宽度估算
+    tw = w if w else estimate_text_width(text, size)
     return {
         "id": uid(), "type": "text",
         "x": x, "y": y, "width": tw, "height": size * 1.5,
@@ -458,6 +529,9 @@ Y += 60
 out_path = "/Users/jnx/Desktop/用AI记录改命-白板.excalidraw"
 if len(sys.argv) >= 3 and sys.argv[1] == "--output":
     out_path = sys.argv[2]
+
+# 边界检查（输出前必须执行）
+check_bounds(elements)
 
 output = {
     "type": "excalidraw",

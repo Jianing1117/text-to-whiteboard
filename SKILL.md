@@ -186,6 +186,15 @@ config/user_preferences.json
 2. 卡片内不混色
 3. 标题默认黑色，强化板块才用彩色
 4. 3+ 卡片用多色，1-2 卡片用蓝色系
+5. **画布背景必须为白色**: `viewBackgroundColor: "#FFFFFF"`
+
+---
+
+## Canvas Background
+
+**必须设置**: `appState.viewBackgroundColor` = `"#FFFFFF"` (纯白)
+
+不要使用 C0 或其他浅色作为画布背景。
 
 ---
 
@@ -234,9 +243,47 @@ el_line(x, y, w, color, sw)              # 水平分隔线
 |------|------|------|
 | 中文引号报错 | `"` 与 Python 冲突 | 用 `「」` 或单独变量 |
 | 文字不显示 | 用了 `color` 字段 | 用 `strokeColor` |
-| 文字截断 | `width` 太小 | `max(len(text) * size * 0.65, 80)` |
+| 文字截断 | `width` 太小或估算不准 | 用 `estimate_text_width(text, size)` 函数 |
 | 元素不渲染 | 缺少必需字段 | 复制模板完整结构 |
 | 垂直线无效 | `el_line` 只支持水平 | 用 `el_rect` 代替 |
+| 文字超出卡片 | 宽度估算不准或卡片太小 | 运行 `check_bounds()` 检查 |
+| 画布背景不是白色 | `viewBackgroundColor` 设置错误 | 必须设为 `"#FFFFFF"` |
+
+---
+
+## Text Width Estimation
+
+中英文混排时，使用 `estimate_text_width()` 函数：
+
+```python
+def estimate_text_width(text, size):
+    """估算文字渲染宽度，中英文混排友好"""
+    width = 0
+    for char in text:
+        if '\u4e00' <= char <= '\u9fff':  # 中文
+            width += size * 0.95
+        elif char.isupper():  # 大写英文
+            width += size * 0.65
+        else:  # 小写/数字/符号
+            width += size * 0.45
+    return max(int(width), 80)
+```
+
+---
+
+## Bounds Checking (Required)
+
+输出前**必须**运行边界检查：
+
+```python
+def check_bounds(elements):
+    """检查文字是否超出卡片边界"""
+    # 收集大卡片（排除装饰性细矩形）
+    rects = [e for e in elements if e["type"] == "rectangle" and e["width"] > 100 and e["height"] > 40]
+    # ... 检查逻辑
+```
+
+**使用方式**：在 `json.dump()` 之前调用 `check_bounds(elements)`
 
 ---
 
@@ -297,5 +344,11 @@ See `examples/outputs/` for reference images:
 
 ## Version
 
-Current: 2.1.0
-Updated: 2026-04-06
+Current: 2.2.0
+Updated: 2026-04-07
+
+**v2.2.0 Changes**:
+- Added `estimate_text_width()` for accurate Chinese/English text width
+- Added `check_bounds()` function for boundary validation before output
+- Enforced white canvas background (`#FFFFFF`)
+- Updated Gotchas table with new common issues
